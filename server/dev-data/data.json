@@ -1,0 +1,73 @@
+[
+  { "title": "Shopping List", "content": "Milk, Eggs, Bread, Butter" },
+  {
+    "title": "Workout Plan",
+    "content": "Monday: Chest, Tuesday: Back, Wednesday: Legs"
+  },
+  {
+    "title": "Project Ideas",
+    "content": "1. Budget Tracker\n2. Habit Tracker\n3. Recipe App"
+  },
+  {
+    "title": "Books to Read",
+    "content": "Atomic Habits, Deep Work, The Alchemist"
+  },
+  {
+    "title": "Meeting Notes",
+    "content": "Discuss UI revamp and API integration timelines"
+  },
+  {
+    "title": "Vacation Plan",
+    "content": "Goa trip - Feb 2026\nBook flights and hotel"
+  },
+  { "title": "Course List", "content": "React, Node.js, MongoDB, DevOps" },
+  {
+    "title": "Startup Thoughts",
+    "content": "Idea: Note app with AI auto-categorization"
+  },
+  {
+    "title": "Birthday Gift Ideas",
+    "content": "Smartwatch, Headphones, Customized Mug"
+  },
+  {
+    "title": "Interview Questions",
+    "content": "JS Hoisting, Event Loop, REST vs GraphQL"
+  },
+  {
+    "title": "Recipe: Pasta",
+    "content": "Boil pasta, Add sauce, Mix with veggies"
+  },
+  {
+    "title": "Groceries for Week",
+    "content": "Tomatoes, Rice, Cheese, Bananas"
+  },
+  {
+    "title": "Quotes",
+    "content": "Be yourself; everyone else is already taken. — Oscar Wilde"
+  },
+  {
+    "title": "Learning Plan",
+    "content": "1 hour DSA\n2 hours React\n30 mins Dev Blogs"
+  },
+  {
+    "title": "Client Feedback",
+    "content": "Homepage looks good. Make nav sticky. Fix mobile view."
+  },
+  {
+    "title": "Fix Bugs",
+    "content": "Login redirect issue, Note not saving, Slow dashboard"
+  },
+  {
+    "title": "Portfolio Tasks",
+    "content": "Add testimonials, Dark mode toggle, Animations"
+  },
+  {
+    "title": "Side Project Goals",
+    "content": "Launch MVP by Sept, Blog every week"
+  },
+  { "title": "Fun Ideas", "content": "VR journaling app, AI poem generator" },
+  {
+    "title": "Quick Notes",
+    "content": "Meeting at 4pm. Push code to GitHub. Mail resume."
+  }
+]
