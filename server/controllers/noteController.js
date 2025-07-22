@@ -6,14 +6,14 @@ exports.getAllNotes = async (req, res) => {
   res.status(200).json({
     status: "success",
     data: {
-      //   notes,
+      notes,
     },
   });
 };
 
 // createNote – POST a new note
 exports.createNote = async (req, res) => {
-  const newNote = new Note.create(req.body);
+  const newNote = await Note.create(req.body);
   await newNote.save();
   res.status(201).json({
     status: "success",
@@ -23,7 +23,7 @@ exports.createNote = async (req, res) => {
   });
 };
 
-// updateNote – PUT update a note
+// updateNote – PATCH update a note
 exports.updateNote = async (req, res) => {
   const updated = await Note.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
