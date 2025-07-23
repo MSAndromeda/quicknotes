@@ -1,198 +1,126 @@
-# QuickNotes App
+# QuickNotes
 
-A simple full-stack note-taking application built with the MERN stack to understand how to connect basic frontend and backend togather and work with both(MongoDB, Express.js, React, Node.js).
+A full-stack note-taking application built with the MERN stack (MongoDB, Express.js, React, Node.js). This project demonstrates how to connect a modern frontend with a RESTful backend and database.
+
+---
 
 ## 📁 Folder Structure
 
 ```
-/
-├── client/       # React frontend (Vite)
-├── server/       # Node.js + Express + MongoDB backend
-└── README.md
+quicknotes/
+├── client/   # React frontend (Vite + TailwindCSS)
+├── server/   # Node.js + Express + MongoDB backend
+├── README.md # Global project documentation
 ```
+
+---
 
 ## 🚀 Tech Stack
 
-- **Frontend:** React (Vite)
-- **Backend:** Node.js, Express
-- **Database:** MongoDB with Mongoose
-- **Others:** dotenv, cors, nodemon
-
-## ⚙️ Setup Instructions (Development)
-
-### 🔧 Backend Setup
-
-1. Navigate to the `server` directory:
-
-   ```bash
-   cd server
-   ```
-
-2. Create a `.env` file with the following variables:
-
-   ```env
-   MONGO_URI=your_mongodb_connection_string
-   PORT=3000
-   ```
-
-   an example.env file is given in the server folder for help.
-
-3. Install dependencies and run the development server:
-
-   ```bash
-   npm install
-   npm run dev
-   ```
-
-   This starts the backend on `http://localhost:3000`
+- **Frontend:** React (Vite), TailwindCSS, React Query, Axios
+- **Backend:** Node.js, Express.js, MongoDB (Mongoose)
+- **Dev Tools:** ESLint, Nodemon, dotenv, CORS
 
 ---
 
-### 🖥️ Frontend Setup
+## ⚙️ Setup Instructions
 
-1. Navigate to the `client` directory:
+### 1. Clone the Repository
 
-   ```bash
-   cd client
-   ```
+```sh
+git clone https://github.com/yourusername/quicknotes.git
+cd quicknotes
+```
 
-2. Install dependencies and run the Vite development server:
+### 2. Backend Setup
 
-   ```bash
-   npm install
-   npm run dev
-   ```
+```sh
+cd server
+cp example.env config.env   # Add your MongoDB URI and PORT
+npm install
+npm run dev
+```
 
-   This starts the frontend on `http://localhost:5173` by default.
+- The backend runs on [http://localhost:3000](http://localhost:3000)
+
+### 3. Frontend Setup
+
+```sh
+cd client
+npm install
+npm run dev
+```
+
+- The frontend runs on [http://localhost:5173](http://localhost:5173)
 
 ---
 
-### 🗃️ Seeding the Database (Optional)
+## 🗃️ Database Seeding (Optional)
 
-If you want to load sample notes data into MongoDB:
+To load sample notes:
 
-1. Add your sample data in `server/dev-data/import-dev-data.js`
-2. Run the import script:
-
-   ```bash
-   npm install
-   npm run import-data
-   ```
+```sh
+cd server
+npm run import-data
+```
 
 To delete all notes:
 
-    ```bash
-    npm run delete-data
-    ```
+```sh
+npm run delete-data
+```
 
-> Make sure the correct database is connected via your `.env` file. See example.env file for more info
-
----
-
-## 🌱 Project Status
-
-- ✅ Backend setup complete
-- ✅ Frontend scaffolded using Vite
-- [x] API integration
-- [x] Full CRUD functionality
-- [x] Deployment
+Sample data is in [`server/dev-data/data.json`](server/dev-data/data.json).
 
 ---
 
-## 📌 Features Planned
+## 📌 Features
 
-### 📝 Core Features
+### Core
 
-- **Create Notes**
+- Create, view, update, and delete notes
+- Responsive UI with dark mode toggle
+- RESTful API for notes management
 
-  - Users can create new notes with a title and content.
-  - Note content supports plain text (with optional support for markdown in the future).
+### Planned/Future
 
-- **View Notes**
-
-  - Display a list of all notes.
-  - Each note can be opened individually to see full content.
-  - Notes are shown in reverse chronological order using timestamps.
-
-- **Update Notes**
-
-  - Users can edit an existing note.
-  - Edited notes retain original timestamps with an "updated at" field.
-
-- **Delete Notes**
-  - Users can delete notes permanently from the database.
-  - Confirmation prompt before deletion.
+- User authentication (JWT)
+- Markdown support
+- Search, filter, and categorize notes
+- Export notes
+- Collaborative editing
 
 ---
 
-### 💻 Frontend Features
-
-- **Responsive UI**
-
-  - Fully responsive layout across desktop, tablet, and mobile devices.
-  - Clean, minimalistic design focused on productivity.
-
-- **Loading and Error States**
-
-  - Proper feedback during data fetching and submission.
-  - Error handling for failed requests or empty states.
-
-- **Dark Mode (Optional)**
-  - Toggle between light and dark themes for user comfort.
-
----
-
-### 🔐 Backend Features
-
-- **REST API**
-
-  - Built using Node.js and Express.
-  - CRUD routes for managing notes (`/api/notes`).
-
-- **MongoDB Integration**
-
-  - Notes stored in MongoDB using Mongoose.
-  - Schema includes `title`, `content`, `createdAt`, and `updatedAt`.
-
-- **Environment Variables**
-  - Configuration using `dotenv` for security and environment-specific settings.
-
----
-
-### 👤 User Authentication (Optional)
-
-- Register and login system with JWT-based authentication.
-- Notes linked to individual users.
-- Only authenticated users can create/edit/delete their own notes.
-
----
-
-### ✍️ Markdown Support (Optional)
-
-- Users can write notes using markdown syntax.
-- Render markdown into formatted HTML (headings, code blocks, etc).
-- Preview pane for real-time markdown rendering.
-
----
-
-### 📦 Additional Features (Future Scope)
-
-- Search and filter notes by title/content.
-- Pin/star important notes.
-- Note categories or tags for better organization.
-- Export notes as `.txt` or `.md` files.
-- Autosave while editing.
-- Collaborative note editing (multi-user editing in real-time).
+📁 [Client README](./client/README.md)  
+📁 [Server README](./server/README.md)
 
 ---
 
 ## 🧑‍💻 Author
 
-**Manas Anand Singh**  
-Feel free to reach out for feedback or collaboration.
+**Manas Anand Singh**
 
 ---
 
-## 📄 License
+## 📝 License
 
 This project is licensed under the MIT License.
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+---
+
+## 💡 Learnings
+
+This project was built for learning purposes to understand full-stack development, REST API integration, and modern React workflows.
+
+---
+
+## 📞 Contact
+
+Feel free to reach out for feedback or collaboration.
