@@ -11,6 +11,17 @@ exports.getAllNotes = async (req, res) => {
   });
 };
 
+// getOneNote - GET a Note
+exports.getOneNote = async (req, res) => {
+  const note = await Note.findById(req.params.id);
+  res.status(200).json({
+    status: "success",
+    data: {
+      note,
+    },
+  });
+};
+
 // createNote – POST a new note
 exports.createNote = async (req, res) => {
   const newNote = await Note.create(req.body);
@@ -28,6 +39,8 @@ exports.updateNote = async (req, res) => {
   const updated = await Note.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
+  console.log("req body: ", req.body);
+  console.log("updated note: ", updated);
   res.status(201).json({
     status: "success",
     data: {

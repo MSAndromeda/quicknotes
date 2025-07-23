@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const Note = require("../models/Note");
 const noteController = require("../controllers/noteController");
 
 // Get all notes
 router.get("/", noteController.getAllNotes);
+
+// Get one note
+router.get("/:id", noteController.getOneNote);
 
 // Add a note
 router.post("/", noteController.createNote);
