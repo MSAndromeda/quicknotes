@@ -1,19 +1,37 @@
-const fs = require("fs");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const Note = require("../models/Note");
+import fs from "fs";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import Note from "../models/Note";
 
 // make connection to config.env file
 dotenv.config({ path: "./config.env" });
 
+const DB = process.env.MONGO_URI;
+if (!DB) {
+  console.error(
+    "MongoDB connection string (MONGO_URI) not found in environment."
+  );
+  process.exit(1);
+}
+
 // connect to database
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(DB)
   .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("DB error:", err));
+  .catch((err) => {
+    console.error("DB error:", err);
+    process.exit(1);
+  });
+
+type N = {
+  title: string;
+  content: string;
+};
 
 // read file data
-const notes = JSON.parse(fs.readFileSync(`${__dirname}/data.json`, "utf-8"));
+const notes: N[] = JSON.parse(
+  fs.readFileSync(`${__dirname}/data.json`, "utf-8")
+);
 
 // import data into db
 const importData = async () => {
