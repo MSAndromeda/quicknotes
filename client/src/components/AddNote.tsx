@@ -1,8 +1,9 @@
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { Nt, AddNoteProps, BackNt } from "../types/Note";
 
-function useNote(id) {
-  return useQuery({
+function useNote(id: string | null) {
+  return useQuery<BackNt, Error>({
     queryKey: ["note", id],
     queryFn: async () => {
       const res = await axios.get(`http://127.0.0.1:3000/api/notes/${id}`);
@@ -14,38 +15,45 @@ function useNote(id) {
 
 function useUpdateNote() {
   const queryClient = useQueryClient();
-  return useMutation({
+  return useMutation<void, Error, { id: string | null; note: Nt }>({
     mutationFn: ({ id, note }) =>
       axios.patch(`http://127.0.0.1:3000/api/notes/${id}`, { ...note }),
-    onSuccess: (_, note) => {
-      queryClient.invalidateQueries(["note", note.id]);
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({ queryKey: ["note", variables.id] });
     },
   });
 }
 
 function useCreateNote() {
   const queryClient = useQueryClient();
-  return useMutation({
+  return useMutation<void, Error, Nt>({
     mutationFn: (newNote) =>
       axios.post("http://127.0.0.1:3000/api/notes", newNote),
     onSuccess: () => {
-      queryClient.invalidateQueries(["notes"]);
+      queryClient.invalidateQueries({ queryKey: ["notes"] });
     },
   });
 }
 
-export default function AddNote({ noteBeingEdited, onDoneEditing }) {
+export default function AddNote({
+  noteBeingEdited,
+  onDoneEditing,
+}: AddNoteProps) {
   const { data: existingNote } = useNote(noteBeingEdited);
   const { mutateAsync: createNote } = useCreateNote();
   const { mutateAsync: updateNote } = useUpdateNote();
 
   const isEditing = !!noteBeingEdited;
 
-  async function handleSubmit(e) {
+  async function handleSubmit(
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> {
     e.preventDefault();
-    const note = {
-      title: e.target.title.value,
-      content: e.target.content.value,
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const note: Nt = {
+      title: formData.get("title") as string,
+      content: formData.get("content") as string,
     };
     try {
       if (isEditing) {
@@ -55,10 +63,11 @@ export default function AddNote({ noteBeingEdited, onDoneEditing }) {
         await createNote(note);
         console.log("Success Creating note");
       }
-      e.target.reset();
+      form.reset();
       onDoneEditing();
     } catch (err) {
-      console.error("Failed to create note: ", err?.message);
+      if (err instanceof Error)
+        console.error("Failed to create note: ", err?.message);
     }
   }
   return (
@@ -96,7 +105,7 @@ export default function AddNote({ noteBeingEdited, onDoneEditing }) {
             id="content"
             name="content"
             defaultValue={existingNote?.content || ""}
-            rows="4"
+            rows={4}
             className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded focus:outline-none focus:ring focus:border-blue-500 dark:bg-gray-700"
             required
           ></textarea>

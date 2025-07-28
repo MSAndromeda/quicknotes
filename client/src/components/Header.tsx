@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 export default function Header() {
   const [theme, setTheme] = useState(false);
 
+  const toggleTheme = () => setTheme((prev) => !prev);
+
   useEffect(() => {
     if (theme) {
       document.documentElement.classList.add("dark");
@@ -18,7 +20,7 @@ export default function Header() {
         </h1>
         <button
           aria-label="Toggle Dark Mode"
-          onClick={() => setTheme(!theme)}
+          onClick={toggleTheme}
           className="px-3 py-1 rounded bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 focus:outline-none focus:ring"
         >
           Toggle Theme
